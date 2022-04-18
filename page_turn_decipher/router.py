@@ -8,5 +8,5 @@ def hello_world():
 
 @app.route('/health')
 def health():
-    return 200, 'success'
+    return 'success', 200
 
