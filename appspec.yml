@@ -1,12 +1,12 @@
 version: 0.0
 os: linux
 files:
- - source: /
-   destination: /home/ec2-user/
- - source: /page_turn_decipher
-   destination: /home/ec2-user/page-turn-decipher
- - source: requirements.txt
-   destination: /home/ec2-user/page-turn-decipher
+  - source: /
+    destination: /home/ec2-user/
+  - source: /page_turn_decipher
+    destination: /home/ec2-user/page-turn-decipher
+  - source: requirements.txt
+    destination: /home/ec2-user/page-turn-decipher
 permissions:
   - object: /home/ec2-user/page-turn-decipher/app.py
     owner: ec2-user
@@ -20,13 +20,13 @@ permissions:
       - file
 hooks:
   AfterInstall:
-   - location: scripts/install_dependencies
-     timeout: 300
-     runas: root
-   - location: scripts/start_server
-     timeout: 300
-     runas: root
+    - location: scripts/install_dependencies
+      timeout: 300
+      runas: root
+    - location: scripts/start_server
+      timeout: 300
+      runas: root
   ApplicationStop:
-   - location: scripts/stop_server
-     timeout: 300
-     runas: root
+    - location: scripts/stop_server
+      timeout: 300
+      runas: root
