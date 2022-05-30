@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "INSTALLING..."
+echo "Installing dependencies..."
 easy_install pip
 echo "pip installed!"
 export POETRY_VERSION=1.1.8
