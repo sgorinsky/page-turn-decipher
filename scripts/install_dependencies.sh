@@ -1,5 +1,5 @@
 #!/bin/bash
-yum update -y
+easy_install pip
 pip install "poetry==$POETRY_VERSION"
-poetry export -f requirements.txt > requirements.txt
+cd /home/ec2-user/page-turn-decipher
 pip install -r requirements.txt
