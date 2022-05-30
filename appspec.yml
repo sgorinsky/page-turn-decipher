@@ -1,6 +1,8 @@
 version: 0.0
 os: linux
 files:
+ - source: /
+   destination: /home/ec2-user/
  - source: /page_turn_decipher
    destination: /home/ec2-user/page-turn-decipher
  - source: requirements.txt
