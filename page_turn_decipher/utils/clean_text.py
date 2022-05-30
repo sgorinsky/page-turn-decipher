@@ -1,6 +1,4 @@
 import numpy as np
-import seaborn as sns
-import matplotlib.pylab as plt
 
 import spacy
 import pandas as pd
@@ -13,7 +11,6 @@ from nltk.stem.porter import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
 
 from nltk import ngrams, FreqDist
-import spacy_universal_sentence_encoder
 
 from page_turn_decipher.utils.stopwords import stop_words, valid_words
 
