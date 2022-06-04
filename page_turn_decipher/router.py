@@ -1,4 +1,6 @@
-from flask import Flask
+from flask import Flask, request
+import pickle
+import sklearn
 from page_turn_decipher.utils.clean_text import clean_text
 app = Flask(__name__)
 
@@ -11,17 +13,22 @@ def hello_world():
 def health():
     return 'success', 200
 
-@app.route('/prediction')
+@app.route('/prediction', methods=["GET", "POST"])
 def make_prediction():
     """Ingest text data, clean+vectorize, return prediction
     """
     
-    text_request = request.body # serialized string
-    text = str(text_request)
-    cleaned_text = clean_text(text)
+    body = request.form # serialized string
+    text = body['text']
     
-    # load ml model and make prediction below
-    pass
+    model = pickle.load(open('static/model.pkl', 'rb'))
+    prediction = model.predict([clean_text(text)])
+    return {
+        'data': {
+            'is_real': bool(prediction[0])
+        }
+    }
+    
     
     
 

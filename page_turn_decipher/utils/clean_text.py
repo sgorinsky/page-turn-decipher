@@ -6,6 +6,7 @@ import os
 import re
 import string
 
+import nltk
 from nltk.tokenize import word_tokenize
 from nltk.stem.porter import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
@@ -13,6 +14,12 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from nltk import ngrams, FreqDist
 
 from page_turn_decipher.utils.stopwords import stop_words, valid_words
+
+# Only run this once, they will be downloaded.
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('words')
+nltk.download('omw-1.4')
 
 #functions used to process text and create the required TFIDF and text2vec Matrices
 def clean_text(text):
@@ -36,18 +43,4 @@ def clean_text(text):
     wnl = WordNetLemmatizer()
     tokens = [wnl.lemmatize(token) for token in tokens]
 
-    return tokens
-
-
-def tfidf(corpus, titles, ngram_range=(1, 1)):
-    Tfidf = TfidfVectorizer(ngram_range=(1, 1))
-
-    #fit the vectorizer using final processed textuments.  The vectorizer requires the
-    #stiched back together textument.
-    TFIDF_matrix = Tfidf.fit_transform(corpus)
-
-    #creating datafram from TFIDF Matrix
-    words = Tfidf.get_feature_names()
-    matrix = pd.DataFrame(TFIDF_matrix.toarray(),
-                          columns=Tfidf.get_feature_names(), index=titles)
-    return matrix, words
+    return ' '.join(tokens)
